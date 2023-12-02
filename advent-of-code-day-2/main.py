@@ -5,7 +5,6 @@ inpFile = open("input.txt", "r")
 inp = inpFile.read()
 gamesArr = inp.split("\n")
 inpFile.close()
-print("\n")
 
 possibleRed = 12
 possibleGreen = 13
@@ -42,27 +41,17 @@ for i in gamesArr:
     reds = []
     for idk in allGamesArr:
         if "blue" in idk:
-            num = int(re.sub(r"(blue)|\s", "", idk))
-            blues.append(num)
+            blues.append(int(re.sub(r"(blue)|\s", "", idk)))
         elif "green" in idk:
-            num = int(re.sub(r"(green)|\s", "", idk))
-            greens.append(num)
+            greens.append(int(re.sub(r"(green)|\s", "", idk)))
         elif "red" in idk:
-            num = int(re.sub(r"(red)|\s", "", idk))
-            reds.append(num)
-
-    highestBlue = 0
-    for b in blues:
-        if b > highestBlue:
-            highestBlue = b
-    highestGreen = 0
-    for g in greens:
-        if g > highestGreen:
-            highestGreen = g
-    highestRed = 0
-    for r in reds:
-        if r > highestRed:
-            highestRed = r
+            reds.append(int(re.sub(r"(red)|\s", "", idk)))
+    blues.sort()
+    greens.sort()
+    reds.sort()
+    highestBlue = blues[-1]
+    highestGreen = greens[-1]
+    highestRed = reds[-1]
 
     if possible == True:
         sum1 += gameNum
@@ -71,5 +60,5 @@ for i in gamesArr:
 
     gameNum += 1
 
-print("PART 1 SUM: " + str(sum1))
+print("\nPART 1 SUM: " + str(sum1))
 print("PART 2 SUM: " + str(sum2))
